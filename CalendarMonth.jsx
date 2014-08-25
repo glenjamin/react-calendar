@@ -15,13 +15,15 @@ var weekdays = [
 
 var CalendarMonth = React.createClass({
   propTypes: {
+    date: u.propTypeMoment,
     today: u.propTypeMoment
   },
   render: function() {
 
     var today = this.props.today;
-    var start = today.clone().startOf('month');
-    var monthDays = today.daysInMonth();
+    var date = this.props.date;
+    var start = date.clone().startOf('month');
+    var monthDays = date.daysInMonth();
     var daySkip = start.isoWeekday() - 1;
 
     var days = [].concat(
@@ -40,21 +42,16 @@ var CalendarMonth = React.createClass({
     var weeks = u.chunk(7, days);
 
     return (
-<table className="table">
-  <caption>
-    {start.format("MMMM YYYY")}
-  </caption>
-  <tbody>
-    <tr>
-      {weekdays.map(function(d) {
-        return <th key={d}>{d}</th>;
-      }.bind(this))}
-    </tr>
-    {weeks.map(function(week, i) {
-      return <tr key={i}>{week}</tr>;
-    })}
-  </tbody>
-</table>
+      <tbody>
+        <tr>
+          {weekdays.map(function(d) {
+            return <th key={d}>{d}</th>;
+          }.bind(this))}
+        </tr>
+        {weeks.map(function(week, i) {
+          return <tr key={i}>{week}</tr>;
+        })}
+      </tbody>
     );
   }
 });

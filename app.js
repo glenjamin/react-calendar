@@ -3,9 +3,9 @@ window.React = React;
 
 var moment = require('moment');
 
-var CalendarMonth = require('./CalendarMonth.jsx');
+var Calendar = require('./Calendar.jsx');
 
 React.renderComponent(
-  CalendarMonth({ today: moment() }),
+  Calendar({ today: moment() }),
   document.body
 );
