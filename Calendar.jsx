@@ -11,6 +11,7 @@ var Calendar = React.createClass({
     today: u.propTypeMoment,
     date: u.propTypeMoment,
     events: React.PropTypes.object,
+    recurring: React.PropTypes.func,
     changeDate: React.PropTypes.func,
     addEvent: React.PropTypes.func
   },
@@ -60,6 +61,7 @@ var Calendar = React.createClass({
       today={this.props.today}
       date={this.props.date}
       events={this.props.events}
+      recurring={this.props.recurring}
       selectDay={this.selectDay}
     />
 

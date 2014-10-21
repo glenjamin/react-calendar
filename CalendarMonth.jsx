@@ -18,6 +18,7 @@ var CalendarMonth = React.createClass({
     date: u.propTypeMoment,
     today: u.propTypeMoment,
     events: React.PropTypes.object,
+    recurring: React.PropTypes.func,
     selectDay: React.PropTypes.func
   },
   render: function() {
@@ -25,7 +26,9 @@ var CalendarMonth = React.createClass({
     var today = this.props.today;
     var date = this.props.date;
     var events = this.props.events;
+    var recurring = this.props.recurring;
     var selectDay = this.props.selectDay;
+
     var start = date.clone().startOf('month');
     var monthDays = date.daysInMonth();
     var daySkip = start.isoWeekday() - 1;
@@ -36,11 +39,15 @@ var CalendarMonth = React.createClass({
       }),
       _.times(monthDays, function(n) {
         var date = start.clone().add(n, 'days');
+        var dayEvents = [].concat(
+          events[date.format('YYYYMMDD')] || [],
+          recurring(date)
+        );
         return <CalendarDay
           key={n + 1}
           date={date}
           today={today}
-          events={events[date.format('YYYYMMDD')]}
+          events={dayEvents}
           selectDay={selectDay}
         />;
       })

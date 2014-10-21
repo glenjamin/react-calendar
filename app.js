@@ -29,7 +29,27 @@ var events = {
     { title: 'Christmas', color: 'brown' }
   ]
 };
-
+var recurringEvents = [
+  function defshef(date) {
+    if (date.isoWeekday() != 2) return false;
+    var d = date.clone();
+    var m = d.month();
+    if (
+      d.subtract(7, 'days').month() == m &&
+      d.subtract(7, 'days').month() != m
+    ) {
+      return {
+        title: "(def shef)", color: "darkgrey"
+      };
+    }
+    return false;
+  }
+];
+function recurring(date) {
+  return recurringEvents.map(function(check) {
+    return check(date);
+  }).filter(function(x) { return x; });
+}
 
 function addEvent(date, event) {
     var key = date.format('YYYYMMDD');
@@ -59,6 +79,7 @@ function redraw() {
             date: date,
             today: moment(),
             events: events,
+            recurring: recurring,
             changeDate: changeDate,
             addEvent: addEvent
         }),
