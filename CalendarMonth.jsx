@@ -16,12 +16,14 @@ var weekdays = [
 var CalendarMonth = React.createClass({
   propTypes: {
     date: u.propTypeMoment,
-    today: u.propTypeMoment
+    today: u.propTypeMoment,
+    events: React.PropTypes.object
   },
   render: function() {
 
     var today = this.props.today;
     var date = this.props.date;
+    var events = this.props.events;
     var start = date.clone().startOf('month');
     var monthDays = date.daysInMonth();
     var daySkip = start.isoWeekday() - 1;
@@ -31,10 +33,12 @@ var CalendarMonth = React.createClass({
         return <td key={-1 * n} />;
       }),
       _.times(monthDays, function(n) {
+        var date = start.clone().add(n, 'days');
         return <CalendarDay
           key={n + 1}
-          date={start.clone().add(n, 'days')}
+          date={date}
           today={today}
+          events={events[date.format('YYYYMMDD')]}
         />;
       })
     );

@@ -9,6 +9,7 @@ var Calendar = React.createClass({
   propTypes: {
     today: u.propTypeMoment,
     date: u.propTypeMoment,
+    events: React.PropTypes.object,
     changeDate: React.PropTypes.func
   },
   jumpToToday: function(e) {
@@ -46,6 +47,7 @@ var Calendar = React.createClass({
   <CalendarMonth
     today={this.props.today}
     date={this.props.date}
+    events={this.props.events}
   />
 
 </table>
