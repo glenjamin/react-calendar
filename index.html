@@ -3,6 +3,40 @@
 <head>
     <title>React Calendar</title>
 </head>
+<style type="text/css">
+body {
+    font-family: Helvetica
+}
+
+.table {
+    border-collapse: collapse;
+}
+.table caption {
+    font-size: 1.5rem;
+    padding: 10px;
+}
+.table th {
+    border: 1px solid black;
+    font-weight: bold;
+    text-align: left;
+    padding: 5px;
+}
+.table td {
+    border: 1px solid black;
+    padding: 5px;
+    height: 75px;
+    width: 75px;
+    vertical-align: top;
+}
+.table td.today {
+    border-color: darkred;
+    border-width: 2px;
+    font-weight: bold;
+    color: darkred;
+    padding: 4px;
+
+}
+</style>
 <body>
 
 <script src="bundle.js"></script>
