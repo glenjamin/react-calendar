@@ -14,15 +14,20 @@ var Calendar = React.createClass({
       date: this.props.today.clone().startOf('month')
     };
   },
+  jumpToToday: function(e) {
+    this.setState(this.getInitialState());
+  },
   prevMonth: function(e) {
     this.setState({
       date: this.state.date.clone().subtract(1, 'month')
     });
+    return false;
   },
   nextMonth: function(e) {
     this.setState({
       date: this.state.date.clone().add(1, 'month')
     });
+    return false;
   },
   render: function() {
     return (
@@ -34,7 +39,11 @@ var Calendar = React.createClass({
     <button className="pull-right"
       onClick={this.nextMonth}>Next</button>
 
-    {this.state.date.format("MMMM YYYY")}
+    <span className="clickable"
+      onClick={this.jumpToToday}
+    >
+      {this.state.date.format("MMMM YYYY")}
+    </span>
   </caption>
 
   <CalendarMonth
