@@ -17,13 +17,15 @@ var CalendarMonth = React.createClass({
   propTypes: {
     date: u.propTypeMoment,
     today: u.propTypeMoment,
-    events: React.PropTypes.object
+    events: React.PropTypes.object,
+    selectDay: React.PropTypes.func
   },
   render: function() {
 
     var today = this.props.today;
     var date = this.props.date;
     var events = this.props.events;
+    var selectDay = this.props.selectDay;
     var start = date.clone().startOf('month');
     var monthDays = date.daysInMonth();
     var daySkip = start.isoWeekday() - 1;
@@ -39,6 +41,7 @@ var CalendarMonth = React.createClass({
           date={date}
           today={today}
           events={events[date.format('YYYYMMDD')]}
+          selectDay={selectDay}
         />;
       })
     );

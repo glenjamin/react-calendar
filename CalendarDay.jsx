@@ -9,16 +9,22 @@ var CalendarDay = React.createClass({
   propTypes: {
     date: u.propTypeMoment,
     today: u.propTypeMoment,
-    events: React.PropTypes.array
+    events: React.PropTypes.array,
+    selectDay: React.PropTypes.func
+  },
+  onDayClick: function() {
+    this.props.selectDay(this.props.date);
   },
   render: function() {
     var today = this.props.today;
     var date = this.props.date;
     var events = this.props.events || [];
     return (
-      <td className={cx({
-        'today': today.isSame(date, 'day')
-      })}>
+      <td onClick={this.onDayClick}
+        className={cx({
+          'today': today.isSame(date, 'day')
+        })}
+      >
         {date.format('D')}
         {events.map(function(event, i) {
           var style = {color: event.color};

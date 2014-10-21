@@ -5,7 +5,7 @@
 </head>
 <style type="text/css">
 body {
-    font-family: Helvetica
+    font-family: Helvetica;
 }
 
 .table {
@@ -53,6 +53,51 @@ body {
 }
 .table .event {
     font-size: 80%;
+}
+.container {
+    position: relative;
+    padding: 10px;
+}
+.add-event-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(100, 100, 100, 0.5);
+}
+.add-event-form {
+    margin: 50px auto;
+    padding: 10px;
+    width: 50%;
+    display: block;
+    background: #fff;
+    border: 1px solid #333;
+}
+.form-title {
+    text-align: center;
+}
+.add-event-form label {
+    display: block;
+    clear: right;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.add-event-form input,
+.add-event-form select {
+    width: 60%;
+    float: right;
+}
+.form-controls {
+    margin-top: 20px;
+    text-align: center;
+}
+.form-controls button {
+    margin: 0 5px;
+    padding: 5px;
+}
+.error {
+    color: darkred;
 }
 </style>
 <body>

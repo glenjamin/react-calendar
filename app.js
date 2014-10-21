@@ -30,6 +30,14 @@ var events = {
   ]
 };
 
+
+function addEvent(date, event) {
+    var key = date.format('YYYYMMDD');
+    events[key] = events[key] || [];
+    events[key].push(event);
+    redraw();
+}
+
 function readDate() {
     var ymd = window.location.hash.substring(1);
     var m = moment(ymd, fmt);
@@ -51,7 +59,8 @@ function redraw() {
             date: date,
             today: moment(),
             events: events,
-            changeDate: changeDate
+            changeDate: changeDate,
+            addEvent: addEvent
         }),
         document.body
     );
