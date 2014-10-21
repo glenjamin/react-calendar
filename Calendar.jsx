@@ -7,26 +7,23 @@ var CalendarMonth = require('./CalendarMonth.jsx');
 
 var Calendar = React.createClass({
   propTypes: {
-    today: u.propTypeMoment
-  },
-  getInitialState: function() {
-    return {
-      date: this.props.today.clone().startOf('month')
-    };
+    today: u.propTypeMoment,
+    date: u.propTypeMoment,
+    changeDate: React.PropTypes.func
   },
   jumpToToday: function(e) {
-    this.setState(this.getInitialState());
+    this.props.changeDate(this.props.today);
   },
   prevMonth: function(e) {
-    this.setState({
-      date: this.state.date.clone().subtract(1, 'month')
-    });
+    this.props.changeDate(
+      this.props.date.clone().subtract(1, 'month')
+    );
     return false;
   },
   nextMonth: function(e) {
-    this.setState({
-      date: this.state.date.clone().add(1, 'month')
-    });
+    this.props.changeDate(
+      this.props.date.clone().add(1, 'month')
+    );
     return false;
   },
   render: function() {
@@ -42,13 +39,13 @@ var Calendar = React.createClass({
     <span className="clickable"
       onClick={this.jumpToToday}
     >
-      {this.state.date.format("MMMM YYYY")}
+      {this.props.date.format("MMMM YYYY")}
     </span>
   </caption>
 
   <CalendarMonth
     today={this.props.today}
-    date={this.state.date}
+    date={this.props.date}
   />
 
 </table>
